@@ -1,0 +1,93 @@
+models:
+  Customer:
+    softDeletes
+    first_name: string
+    last_name: string
+    address: string
+    city: string
+    state: string
+    zip: string
+    email: nullable string
+    phone: nullable string
+
+  Item:
+    softDeletes
+    description: string
+    location: nullable string
+    imagePath: nullable string
+
+  Reservation:
+    softDeletes
+    customerID: integer
+    reservation_out_date: date
+    reservation_in_date: date
+    check_out_date: date
+    check_in_date: date
+
+  ReservationItems:
+    softDeletes
+    reservationID: integer
+    itemID: integer
+
+controllers:
+  Customer:
+    index:
+      query: all
+      render: customer.index with:customers
+    new:
+      render: customer.new
+    edit:
+      find: customer.id
+      render: customer.edit with:customer
+    store:
+      validate: first_name, last_name, address, city, state, zip, email, phone
+      save: customer
+      redirect: customer.index
+    update:
+      validate: first_name, last_name, address, city, state, zip, email, phone
+      find: customer.id
+      save: customer
+      redirect: customer.edit with:customer
+    destroy:
+      delete: customer.id
+
+  Item:
+    index:
+      query: all
+      render: item.index with:item
+    new:
+      render: item.new
+    edit:
+      find: item.id
+      render: item.edit with:item
+    store:
+      validate: description
+      save: item
+      redirect: item.index
+    update:
+      validate: description
+      find: item.id
+      save: item
+      redirect: item.edit with:item
+    destroy:
+      save: item.id
+
+  Reservation:
+    index:
+      query: all with:reservationItems with:customer
+      render: reservations.index with:reservation
+    new:
+      render: reservations.new
+    edit:
+      find: reservation.id
+      render: reservations.edit with:reservation
+    store:
+      save: reservation
+      redirect: reservations.index
+    update:
+      find: reservation.id
+      save: reservation
+      redirect: item.edit with:reservation
+    destroy:
+      save: reservation.id
+
