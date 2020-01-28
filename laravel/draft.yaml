@@ -15,6 +15,8 @@ models:
     description: string
     location: nullable string
     imagePath: nullable string
+    quantity: integer
+    available_quantity: integer
 
   Reservation:
     softDeletes
@@ -74,7 +76,7 @@ controllers:
 
   Reservation:
     index:
-      query: all with:reservationItems with:customer
+      query: all
       render: reservations.index with:reservation
     new:
       render: reservations.new
@@ -87,7 +89,7 @@ controllers:
     update:
       find: reservation.id
       save: reservation
-      redirect: item.edit with:reservation
+      redirect: reservations.edit with:reservation
     destroy:
       save: reservation.id
 
