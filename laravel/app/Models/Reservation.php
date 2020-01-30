@@ -30,4 +30,14 @@ class Reservation extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function reservationItems()
+    {
+        return $this->hasMany(ReservationItems::class, 'reservationID');
+    }
+
+    public function items()
+    {
+        return $this->hasManyThrough(Item::class, ReservationItems::class, 'itemID', 'item', 'id', 'reservationID');
+    }
 }

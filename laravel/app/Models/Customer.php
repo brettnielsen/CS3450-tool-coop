@@ -33,4 +33,9 @@ class Customer extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class, 'customerID');
+    }
 }

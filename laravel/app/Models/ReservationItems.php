@@ -27,4 +27,9 @@ class ReservationItems extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function item()
+    {
+        return $this->hasMany(Item::class, 'itemID');
+    }
 }
