@@ -41,15 +41,11 @@ class CustomerController extends Controller
         return view('customer.edit', compact('customer'));
     }
 
-    /**
-     * @param \App\Http\Requests\CustomerStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CustomerStoreRequest $request)
     {
         $customer = Customer::create($request->all());
 
-        return redirect()->route('customer.index');
+        return redirect()->action('CustomerController@index');
     }
 
     /**
