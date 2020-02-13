@@ -42,3 +42,7 @@ Route::group(['prefix' => '/reservation'], function() {
     Route::post('update/{id}', 'ReservationController@update');
     Route::post('destroy/{id}', 'ReservationController@destroy');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
