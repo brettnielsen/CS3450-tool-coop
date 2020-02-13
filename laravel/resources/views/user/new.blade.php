@@ -6,8 +6,9 @@
 
 @extends('layouts.app')
 
+@section('cardTitle', 'New User')
+
 @section('content')
-    <link href="/css/app.css" rel="stylesheet">
-    <h1>new</h1>
+    <p>new</p>
 
 @endsection

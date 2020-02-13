@@ -6,7 +6,9 @@
 
 @extends('layouts.app')
 
+@section('cardTitle', 'Reservation Catalog')
+
 @section('content')
-    <h1>index</h1>
+    <p>This is the list of reservations</p>
 
 @endsection

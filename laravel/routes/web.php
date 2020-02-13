@@ -45,7 +45,7 @@ Route::group(['prefix' => '/reservation'], function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ItemController@index');
 
 
 Route::resource('user', 'UserController')->except('create', 'show');

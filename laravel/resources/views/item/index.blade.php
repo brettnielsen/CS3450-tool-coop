@@ -6,7 +6,9 @@
 
 @extends('layouts.app')
 
+@section('cardTitle', 'Item Catalog')
+
 @section('content')
-    <h1>index</h1>
+    <p>This is the list of items</p>
 
 @endsection

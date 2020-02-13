@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -33,7 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a href="/item/index" class="nav-link">Items</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/user/index" class="nav-link">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/reservation/index" class="nav-link">Reservations</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,7 +81,18 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">@yield('cardTitle')</div>
+
+                            @yield('content')
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
