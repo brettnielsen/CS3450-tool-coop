@@ -15,7 +15,7 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::all();
 
-        return view('reservations.index', compact('reservation'));
+        return view('reservations.index', compact('reservations'));
     }
 
     /**
@@ -34,9 +34,9 @@ class ReservationController extends Controller
      */
     public function edit(Request $request, Reservation $reservation, $id)
     {
-        $reservation = Reservation::find($id);
+        $reservations = Reservation::find($id);
 
-        return view('reservations.edit', compact('reservation'));
+        return view('reservations.edit', compact('reservations'));
     }
 
     /**
@@ -57,11 +57,11 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation, $id)
     {
-        $reservation = Reservation::find($id);
+        $reservations = Reservation::find($id);
         // TODO: add logic to save from request
-        $reservation->save();
+        $reservations->save();
 
-        return redirect()->route('reservations.edit', [$reservation]);
+        return redirect()->route('reservations.edit', [$reservations]);
     }
 
     /**
