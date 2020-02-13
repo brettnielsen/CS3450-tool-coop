@@ -1,0 +1,9 @@
+created:
+    - app/Http/Controllers/UserController.php
+    - app/Http/Requests/UserStoreRequest.php
+    - app/Http/Requests/UserUpdateRequest.php
+    - resources/views/user/index.blade.php
+    - resources/views/user/new.blade.php
+    - resources/views/user/edit.blade.php
+updated:
+    - routes/web.php

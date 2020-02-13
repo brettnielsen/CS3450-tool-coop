@@ -16,13 +16,13 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => '/customer'], function() {
-    Route::get('index', 'CustomerController@index');
-    Route::get('new', 'CustomerController@new');
-    Route::get('edit/{id}', 'CustomerController@edit');
-    Route::post('store', 'CustomerController@store');
-    Route::post('update/{id}', 'CustomerController@update');
-    Route::post('destroy/{id}', 'CustomerController@destroy');
+Route::group(['prefix' => '/user'], function() {
+    Route::get('index', 'UserController@index');
+    Route::get('new', 'UserController@new');
+    Route::get('edit/{id}', 'UserController@edit');
+    Route::post('store', 'UserController@store');
+    Route::post('update/{id}', 'UserController@update');
+    Route::post('destroy/{id}', 'UserController@destroy');
 });
 
 Route::group(['prefix' => '/item'], function() {
@@ -46,3 +46,7 @@ Route::group(['prefix' => '/reservation'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('user', 'UserController')->except('create', 'show');
+Route::get('user/new', 'UserController@new');

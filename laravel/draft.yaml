@@ -1,95 +1,21 @@
-models:
-  Customer:
-    softDeletes
-    first_name: string
-    last_name: string
-    address: string
-    city: string
-    state: string
-    zip: string
-    email: nullable string
-    phone: nullable string
-
-  Item:
-    softDeletes
-    description: string
-    location: nullable string
-    imagePath: nullable string
-    quantity: integer
-    available_quantity: integer
-
-  Reservation:
-    softDeletes
-    customerID: integer
-    reservation_out_date: date
-    reservation_in_date: date
-    check_out_date: date
-    check_in_date: date
-
-  ReservationItems:
-    softDeletes
-    reservationID: integer
-    itemID: integer
-
 controllers:
-  Customer:
+  User:
     index:
       query: all
-      render: customer.index with:customers
+      render: user.index
     new:
-      render: customer.new
+      render: user.new
     edit:
-      find: customer.id
-      render: customer.edit with:customer
+      find: user.id
+      render: user.edit with:user
     store:
       validate: first_name, last_name, address, city, state, zip, email, phone
-      save: customer
-      redirect: customer.index
+      save: user
+      redirect: user.index
     update:
       validate: first_name, last_name, address, city, state, zip, email, phone
-      find: customer.id
-      save: customer
-      redirect: customer.edit with:customer
+      find: user.id
+      save: user
+      redirect: user.edit with:user
     destroy:
-      delete: customer.id
-
-  Item:
-    index:
-      query: all
-      render: item.index with:item
-    new:
-      render: item.new
-    edit:
-      find: item.id
-      render: item.edit with:item
-    store:
-      validate: description
-      save: item
-      redirect: item.index
-    update:
-      validate: description
-      find: item.id
-      save: item
-      redirect: item.edit with:item
-    destroy:
-      save: item.id
-
-  Reservation:
-    index:
-      query: all
-      render: reservations.index with:reservation
-    new:
-      render: reservations.new
-    edit:
-      find: reservation.id
-      render: reservations.edit with:reservation
-    store:
-      save: reservation
-      redirect: reservations.index
-    update:
-      find: reservation.id
-      save: reservation
-      redirect: reservations.edit with:reservation
-    destroy:
-      save: reservation.id
-
+      delete: user.id
