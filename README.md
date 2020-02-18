@@ -1,11 +1,19 @@
 # CS3450-tool-coop 
 
+## Organization
+####The neighborhood tool co-op offers customers to pay a monthly fee to allow them to checkout tools to use when they need them.  The tool co-op needs a way to keep track of inventory, reservations, customers, and fees.
+
 ## Version Control
 #### Use git and upload to github at https://github.com/brettnielsen/CS3450-tool-coop
+#### All changes should be made branched off of master at feature/*. These branches will be pushed to master and will be required one approving vote from another team member before it is merged to master.
 
 ## Tool Stack
-#### LAMP stack
-#### Laravel Framework
+#### PHP, HTML, CSS, Javascript, Sqlite
+#### Laravel Framework for backend
+#### Laravel Blade for templating the front end
+#### Homestead for local development
+#### Discord for communication
+
 
 ## Build Instructions
 #### For development, follow guide on laravel.com, also found in readME.md in laravel directory
@@ -14,4 +22,10 @@
 
 ## Unit Testing
 #### Use phpunit for unit testing
+#### We will write unit tests for all public functions written. These may be simple, but must pass to allow branch to merge to master.
 ##### https://laravel.com/docs/5.8/testing
+
+## System Testing
+#### Phpunit can be used for a feature test to continue system wide testing
+#### New code will be thoroughly tested before being deployed
+#### System testing will be done by our team to ensure all features work as they should.
