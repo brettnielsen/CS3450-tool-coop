@@ -1,7 +1,7 @@
 # CS3450-tool-coop 
 
 ## Organization
-####The neighborhood tool co-op offers customers to pay a monthly fee to allow them to checkout tools to use when they need them.  The tool co-op needs a way to keep track of inventory, reservations, customers, and fees.
+#### The neighborhood tool co-op offers customers to pay a monthly fee to allow them to checkout tools to use when they need them.  The tool co-op needs a way to keep track of inventory, reservations, customers, and fees.
 
 ## Version Control
 #### Use git and upload to github at https://github.com/brettnielsen/CS3450-tool-coop
