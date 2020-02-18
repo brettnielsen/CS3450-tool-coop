@@ -6,7 +6,9 @@
 
 @extends('layouts.app')
 
+@section('cardTitle', 'Edit Item')
+
 @section('content')
-    <h1>edit</h1>
+    <p>edit</p>
 
 @endsection

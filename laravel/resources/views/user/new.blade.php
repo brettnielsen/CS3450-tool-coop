@@ -1,12 +1,14 @@
 @section('title', 'New Customer')
 
 @push('styles')
-    <link href="/css/customer.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 @endpush
 
 @extends('layouts.app')
 
+@section('cardTitle', 'New User')
+
 @section('content')
-    <h1>new</h1>
+    <p>new</p>
 
 @endsection

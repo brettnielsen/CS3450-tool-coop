@@ -1,4 +1,4 @@
-@section('title', 'Edit Customer')
+@section('title', 'All Customers')
 
 @push('styles')
     <link href="/css/customer.css" rel="stylesheet">
@@ -6,7 +6,9 @@
 
 @extends('layouts.app')
 
+@section('cardTitle', 'User Catalog')
+
 @section('content')
-    <h1>edit</h1>
+    <p>This is the list of users</p>
 
 @endsection
