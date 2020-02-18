@@ -50,3 +50,6 @@ Route::get('/home', 'ItemController@index');
 
 Route::resource('user', 'UserController')->except('create', 'show');
 Route::get('user/new', 'UserController@new');
+
+Route::view('/terms', 'terms');
+Route::view('/help', 'help');
