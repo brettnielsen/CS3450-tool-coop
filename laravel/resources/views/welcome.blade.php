@@ -86,7 +86,8 @@
 
                 <div class="links">
                     <a href="/item/index">Item Catelog</a>
-                    <a href="#">Contact Us</a>
+                    <a href="/terms">Terms and Agreements</a>
+                    <a href="/help">Help</a>
 
                 </div>
             </div>
