@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemStoreRequest;
 use App\Http\Requests\ItemUpdateRequest;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -15,9 +17,13 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
+        $userID = Auth::id();
+        $user = $userID ? User::find($userID) : false;
+        $isAdmin = $user ? !!$user->is_admin : false;
+
         $items = Item::all();
 
-        return view('item.index', compact('items'));
+        return view('item.index', compact('items', 'userID', 'isAdmin'));
     }
 
     /**
@@ -36,6 +42,7 @@ class ItemController extends Controller
      */
     public function edit(Request $request, Item $item, $id)
     {
+
         $item = Item::find($id);
 
         return view('item.edit', compact('item'));
@@ -47,9 +54,20 @@ class ItemController extends Controller
      */
     public function store(ItemStoreRequest $request)
     {
-        $item = Item::create($request->all());
+        $item = new Item();
+        $item->description = $request->get('description');
+        $item->location = $request->get('location');
+        $item->quantity = $request->get('quantity');
+        $item->available_quantity = $request->get('quantity');
 
-        return redirect()->route('item.index');
+        if($request->hasFile('image')) {
+            $path = $request->image->store('images');
+            $item->imagePath = $path;
+        }
+
+        $item->save();
+
+        return redirect('/item/index');
     }
 
     /**
@@ -73,7 +91,9 @@ class ItemController extends Controller
      */
     public function destroy(Request $request, Item $item, $id)
     {
-        //TODO: define function
-        return;
+        $item = Item::find($id);
+        $item->delete();
+
+        return redirect('/item/index');
     }
 }

@@ -31,7 +31,7 @@ Route::group(['prefix' => '/item'], function() {
     Route::get('edit/{id}', 'ItemController@edit')->middleware('auth');
     Route::post('store', 'ItemController@store')->middleware('auth');
     Route::post('update/{id}', 'ItemController@update')->middleware('auth');
-    Route::post('destroy/{id}', 'ItemController@destroy')->middleware('auth');
+    Route::get('destroy/{id}', 'ItemController@destroy')->middleware('auth');
 });
 
 Route::group(['prefix' => '/reservation'], function() {
