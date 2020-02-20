@@ -9,7 +9,9 @@
 @section('cardTitle')
     <div>
         <span>Item Catalog</span>
-        <a class="btn btn-success" href="/item/new" style="float: right;">New Item</a>
+        @if($isAdmin)
+            <a class="btn btn-success" href="/item/new" style="float: right;">New Item</a>
+        @endif
     </div>
 @endsection
 
@@ -32,7 +34,9 @@
                 <div style="float: right; text-align: right;">
                     <button type="button" class="btn btn-primary">Add To Reservation</button>
                     <br>
-                    <a class="btn btn-secondary btn-sm" style="color: white; margin-top: 5px;" href="/item/edit/{{$item->id}}">Edit</a>
+                    @if($isAdmin)
+                        <a class="btn btn-secondary btn-sm" style="color: white; margin-top: 5px;" href="/item/edit/{{$item->id}}">Edit</a>
+                    @endif
                 </div>
             </td>
         </tr>
@@ -41,3 +45,4 @@
 </table>
 
 @endsection
+
