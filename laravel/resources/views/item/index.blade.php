@@ -4,7 +4,7 @@
     <link href="/css/item.css" rel="stylesheet">
 @endpush
 
-@extends('layouts.basic')
+@extends('layouts.app')
 
 @section('cardTitle')
     <div>
