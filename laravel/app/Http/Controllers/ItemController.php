@@ -47,9 +47,20 @@ class ItemController extends Controller
      */
     public function store(ItemStoreRequest $request)
     {
-        $item = Item::create($request->all());
+        $item = new Item();
+        $item->description = $request->get('description');
+        $item->location = $request->get('location');
+        $item->quantity = $request->get('quantity');
+        $item->available_quantity = $request->get('quantity');
 
-        return redirect()->route('item.index');
+        if($request->hasFile('image')) {
+            $path = $request->image->store('images');
+            $item->imagePath = $path;
+        }
+
+        $item->save();
+
+        return redirect('/item/index');
     }
 
     /**
