@@ -36,12 +36,14 @@
                         <li class="nav-item">
                             <a href="/item/index" class="nav-link">Items</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/user/index" class="nav-link">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/reservation/index" class="nav-link">Reservations</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href="/user/index" class="nav-link">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/reservation/index" class="nav-link">Reservations</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -90,6 +92,9 @@
                             @yield('content')
 
                         </div>
+                    </div>
+                    <div style="position: fixed; right: 0; width: 20%;">
+                        @yield('rightContent')
                     </div>
                 </div>
             </div>

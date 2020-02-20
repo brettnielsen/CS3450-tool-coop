@@ -91,7 +91,9 @@ class ItemController extends Controller
      */
     public function destroy(Request $request, Item $item, $id)
     {
-        //TODO: define function
-        return;
+        $item = Item::find($id);
+        $item->delete();
+
+        return redirect('/item/index');
     }
 }

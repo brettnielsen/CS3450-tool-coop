@@ -46,3 +46,6 @@
 
 @endsection
 
+@section('rightContent')
+    @include('reservations.reservationCard')
+@endsection

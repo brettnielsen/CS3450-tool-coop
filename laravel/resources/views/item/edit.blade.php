@@ -25,10 +25,19 @@
             <input type="file" id="image" name="image">
             <br>
             <div style="padding-top: 15px;">
-                <a class="btn btn-danger" href="/item/index">Cancel</a>
+                <a class="btn btn-light" href="/item/index">Cancel</a>
+                <button class="btn btn-danger" type="button" onclick="deleteItem({{$item->id}})">Delete Item</button>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
+
+    <script>
+        function deleteItem(itemID) {
+            if(confirm('Are you sure you want to delete this item?')) {
+                window.location.href = '/item/destroy/' + itemID;
+            }
+        }
+    </script>
 
 @endsection

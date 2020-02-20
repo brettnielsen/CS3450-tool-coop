@@ -25,7 +25,7 @@
             <input type="file" id="image" name="image">
             <br>
             <div style="padding-top: 15px;">
-                <a class="btn btn-danger" href="/item/index">Cancel</a>
+                <a class="btn btn-light" href="/item/index">Cancel</a>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
