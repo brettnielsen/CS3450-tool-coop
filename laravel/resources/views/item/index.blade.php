@@ -4,7 +4,7 @@
     <link href="/css/item.css" rel="stylesheet">
 @endpush
 
-@extends('layouts.app')
+@extends('layouts.basic')
 
 @section('cardTitle', 'Item Catalog')
 

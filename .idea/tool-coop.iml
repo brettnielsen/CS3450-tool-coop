@@ -8,6 +8,9 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel/app" isTestSource="false" packagePrefix="App\" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/dnoegel/php-xdg-base-dir" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/event-manager" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/lexer" />

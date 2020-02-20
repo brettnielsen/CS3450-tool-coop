@@ -9,6 +9,8 @@
 @section('cardTitle', 'New Item')
 
 @section('content')
-    <p>new</p>
+    <form>
+
+    </form>
 
 @endsection
