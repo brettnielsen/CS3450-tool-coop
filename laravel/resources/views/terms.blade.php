@@ -1,8 +1,6 @@
 @section('title', 'Terms and Conditions')
 
-@extends('layouts.app')
-
-@section('cardTitle', 'Terms and conditions')
+@extends('layouts.basic')
 
 @section('content')
     <p>This is where the html goes</p>
