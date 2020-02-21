@@ -36,7 +36,7 @@
 
                             @if(!$reservation->check_out_date)
                                 <td>
-                                    <a class="btn btn-danger btn-sm" href="/reservation/destroy/{{$reservation->id}}">Delete Reservation</a>
+                                    <a class="btn btn-danger btn-sm" href="/reservation/destroy/{{$reservation->id}}">Delete</a>
                                 </td>
                             @endif
                         </tr>
