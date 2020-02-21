@@ -20,17 +20,16 @@ class ReservationController extends Controller
         $userID = Auth::id();
         $user = $userID ? User::find($userID) : false;
         $isAdmin = $user ? !!$user->is_admin : false;
+        $date = new Carbon();
 
         if($isAdmin) {
-            $reservations = Reservation::all();
+            $reservations = Reservation::where('reservation_out_date', '>=', $date->format('Y-m-d'))->get();
         }
         else {
-            $date = new Carbon();
-            $reservations= Reservation::where('userID', $userID)->where('reservation_out_date', '>=', $date)->with(['reservationItems' => function($query) {
+            $reservations= Reservation::where('userID', $userID)->where('reservation_out_date', '>=', $date->format('Y-m-d'))->with(['reservationItems' => function($query) {
                 $query->with('item');
             }])->get();
         }
-
         return view('reservations.index', compact('reservations'));
     }
 
