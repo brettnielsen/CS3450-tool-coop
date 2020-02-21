@@ -41,6 +41,8 @@ Route::group(['prefix' => '/reservation'], function() {
     Route::post('store', 'ReservationController@store')->middleware('auth');
     Route::post('update/{id}', 'ReservationController@update')->middleware('auth');
     Route::post('destroy/{id}', 'ReservationController@destroy')->middleware('auth');
+    Route::get('add-item-to-reservation/{itemID}/{reservationID?}', 'ReservationController@AddItem');
+    Route::get('delete-reservation-item/{reservationID}/{reservationItemID?}', 'ReservationController@removeItem');
 });
 
 Auth::routes();

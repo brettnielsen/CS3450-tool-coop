@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemStoreRequest;
 use App\Http\Requests\ItemUpdateRequest;
 use App\Models\Item;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,13 @@ class ItemController extends Controller
 
         $items = Item::all();
 
-        return view('item.index', compact('items', 'userID', 'isAdmin'));
+        $reservationID = $request->get('reservationID');
+
+        $reservation = $reservationID ? Reservation::with(['reservationItems' => function($query) {
+            $query->with('item');
+        }])->find($reservationID) : false;
+
+        return view('item.index', compact('items', 'userID', 'isAdmin', 'reservation'));
     }
 
     /**

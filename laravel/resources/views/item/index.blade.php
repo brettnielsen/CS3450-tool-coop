@@ -32,7 +32,7 @@
             </td>
             <td>
                 <div style="float: right; text-align: right;">
-                    <button type="button" class="btn btn-primary">Add To Reservation</button>
+                    <a class="btn btn-primary" href="/reservation/add-item-to-reservation/{{$item->id}}/{{$reservation ? $reservation->id : ''}}">Add To Reservation</a>
                     <br>
                     @if($isAdmin)
                         <a class="btn btn-secondary btn-sm" style="color: white; margin-top: 5px;" href="/item/edit/{{$item->id}}">Edit</a>
@@ -45,6 +45,7 @@
 </table>
 
 @endsection
+
 
 @section('rightContent')
     @include('reservations.reservationCard')
