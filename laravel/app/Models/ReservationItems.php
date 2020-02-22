@@ -30,6 +30,6 @@ class ReservationItems extends Model
 
     public function item()
     {
-        return $this->hasMany(Item::class, 'itemID');
+        return $this->hasMany(Item::class, 'id', 'itemID');
     }
 }
