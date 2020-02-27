@@ -17,7 +17,9 @@
     <h2>If I don't use computers can I still access tools from your warehouse?</h2>
         <p>     Yes, our company exists to allow ease of access to all members of our community and we
             will do our best to give this service to all who wants it. Just come to our location and upon
-            checkout of desired tools our friendly assistant will set up your account for you!</p>
+            checkout of desired tools our friendly assistant will set up your account for you! He will show
+            you what the app can do and you can use it in the future or always just walk in to make your desired
+            checkouts!</p>
     <h2>Contact info</h2>
     <ul>
         <li>Location: 852 MapleBerry Drive</li>
