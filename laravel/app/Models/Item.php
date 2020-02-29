@@ -30,4 +30,8 @@ class Item extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function reservationItems() {
+        return $this->belongsTo(ReservationItems::class, 'id', 'itemID');
+    }
 }

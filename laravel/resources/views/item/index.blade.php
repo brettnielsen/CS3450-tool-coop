@@ -27,7 +27,7 @@
                 <span>{{$item->description}}</span>
                 <br>
                 <div style="padding-left: 10px;">
-                    <i>{{$item->available_quantity}} on hand</i>
+                    <i>{{$item->available_quantity - (isset($itemsOnReservations[$item->id]) ? $itemsOnReservations[$item->id] : 0)}} in inventory</i>
                 </div>
             </td>
             <td>
