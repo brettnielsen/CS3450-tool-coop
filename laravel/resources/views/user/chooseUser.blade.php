@@ -9,8 +9,28 @@
 @section('cardTitle', 'Choose User')
 
 @section('content')
+    <form method="get" action="/reservation/choose-date/{{$reservationID}}">
+        <label>Search:</label>
+        <input type="text" name="search" value="{{$search}}">
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+    </form>
+
     <div>
-        <h1>Need to build choose user for admin</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            @foreach($users as $user)
+                <tr>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td><a class="btn btn-sm btn-light" href="/reservation/choose-user/{{$reservationID}}/{{$user->id}}">Select</a></td>
+                </tr>
+            @endforeach
+
+        </table>
     </div>
 
 @endsection

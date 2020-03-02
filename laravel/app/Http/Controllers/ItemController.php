@@ -26,8 +26,8 @@ class ItemController extends Controller
         $today = new Carbon();
 
         $items = Item::all();
-        $reservations = Reservation::where('reservation_out_date', '<=', $today)
-            ->where('reservation_in_date', '>=', $today)->with('reservationItems')->get();
+        $reservations = Reservation::where('reservation_out_date', '>=', $today)
+            ->where('reservation_in_date', '<=', $today)->where('user_id', '!=', 0)->with('reservationItems')->get();
 
         $itemsOnReservations = [];
 
@@ -40,7 +40,6 @@ class ItemController extends Controller
                 $itemsOnReservations[$reserveItem->itemID] += 1;
             }
         }
-//        dd($reservations, $itemsOnReservations);
         $reservationID = $request->get('reservationID');
 
         $reservation = $reservationID ? Reservation::with(['reservationItems' => function($query) {

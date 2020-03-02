@@ -10,17 +10,31 @@
 
 @section('content')
     <div>
-        <form action="/reservation/choose-date/{{$reservationID}}" method="post" onsubmit="return validateForm()">
+        <form action="/reservation/choose-date/{{$reservationID}}" method="post" onsubmit="return validateForm()" id="dateForm">
             @csrf
             <label for="reservation_out_date">Pick Up Date</label>
             <input type="date" id="reservation_out_date" name="reservation_out_date">
             <label for="reservation_in_date">Return Date</label>
             <input type="date" id="reservation_in_date" name="reservation_in_date">
-            <button class="btn btn-success btn-sm" type="submit">Reserve</button>
+            <button class="btn btn-primary btn-sm" type="button" id="checkAvail">Check Availability</button>
+            <button class="btn btn-success btn-sm" type="submit" id="submitReservation" style="display: none">Reserve</button>
         </form>
     </div>
 
     <script>
+        $(document).ready( function() {
+            $('#reservation_out_date').val(getTodaysDate());
+            $('#reservation_in_date').val(getTodaysDate());
+
+            $('#checkAvail').on('click', function() {
+                checkAvailability();
+            })
+        });
+
+        function checkAvailability() {
+
+        }
+
         function validateForm() {
             const outDate = document.getElementById('reservation_out_date').value;
             const inDate = document.getElementById('reservation_in_date').value;

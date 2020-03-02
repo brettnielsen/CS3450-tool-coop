@@ -123,15 +123,29 @@ class ReservationController extends Controller
         $user = $userID ? User::find($userID) : false;
         $isAdmin = $user ? !!$user->is_admin : false;
 
+        $reservation = Reservation::find($reservationID);
+
         if($isAdmin) {
-            return view('user.chooseUser', compact('reservationID'));
+            if($reservation->userID) {
+                return view('reservations.chooseDates', compact('reservationID'));
+            }
+
+
+            $search = $request->get('search');
+            $users = $this->searchUsers($search);
+            return view('user.chooseUser', compact('reservationID', 'users', 'search'));
         }
         else {
-            $reservation = Reservation::find($reservationID);
             $reservation->userID = $userID;
             $reservation->save();
             return view('reservations.chooseDates', compact('reservationID'));
         }
+    }
+
+    private function searchUsers($search) {
+        $users = User::where('name', 'LIKE', '%'.$search.'%')->orderBy('name')->get();
+
+        return $users;
     }
 
     public function setDate(Request $request, $reservationID) {
@@ -141,5 +155,22 @@ class ReservationController extends Controller
         $reservation->save();
 
         return redirect('/reservation/index');
+    }
+
+    public function setUser(Request $request, $reservationID, $userID) {
+        $reservation = Reservation::find($reservationID);
+        $user = User::findOrFail($userID);
+
+        $reservation->userID = $userID;
+
+        $reservation->save();
+
+        return redirect('/reservation/choose-date/'.$reservationID);
+    }
+
+    public function checkAvailability(Request $request, $reservationID) {
+        $reservation = Reservation::find($reservationID)->pluck('reservationItems');
+
+        dd($reservation);
     }
 }
