@@ -9,26 +9,34 @@
 @section('cardTitle', 'Choose User')
 
 @section('content')
-    <form method="get" action="/reservation/choose-date/{{$reservationID}}">
-        <label>Search:</label>
-        <input type="text" name="search" value="{{$search}}">
-        <button type="submit" class="btn btn-primary btn-sm">Search</button>
-    </form>
+    <div style="text-align: center; padding: 15px; display: grid; grid-template-columns: 5fr 1fr">
+        <form method="get" action="/reservation/choose-date/{{$reservationID}}">
+            <label>Search:</label>
+            <input type="text" name="search" value="{{$search}}">
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        </form>
+
+        <a class="btn btn-success" style="color: white">New User</a>
+    </div>
 
     <div>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-            @foreach($users as $user)
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td><a class="btn btn-sm btn-light" href="/reservation/choose-user/{{$reservationID}}/{{$user->id}}">Select</a></td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td><a class="btn btn-sm btn-secondary" href="/reservation/choose-user/{{$reservationID}}/{{$user->id}}">Select</a></td>
+                    </tr>
+                @endforeach
+            </tbody>
 
         </table>
     </div>

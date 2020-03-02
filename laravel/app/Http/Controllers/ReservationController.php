@@ -126,17 +126,19 @@ class ReservationController extends Controller
 
         $reservation = Reservation::find($reservationID);
 
+        //admin needs to choose who reservation is assigned to
         if($isAdmin) {
+            //if user has been chosen, show choose dates
             if($reservation->userID) {
                 return view('reservations.chooseDates', compact('reservationID'));
             }
 
-
+            //no user has been chosen, redirect first to choose user
             $search = $request->get('search');
             $users = $this->searchUsers($search);
             return view('user.chooseUser', compact('reservationID', 'users', 'search'));
         }
-        else {
+        else { //reservation is assigned to logged in user
             $reservation->userID = $userID;
             $reservation->save();
             return view('reservations.chooseDates', compact('reservationID'));
@@ -160,7 +162,7 @@ class ReservationController extends Controller
 
     public function setUser(Request $request, $reservationID, $userID) {
         $reservation = Reservation::find($reservationID);
-        $user = User::findOrFail($userID);
+        $user = User::findOrFail($userID); //find or fail so that if user doesnt exist, it doesn't add the user
 
         $reservation->userID = $userID;
 
