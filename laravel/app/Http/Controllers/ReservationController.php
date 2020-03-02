@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Reservation;
 use App\Models\ReservationItems;
 use App\Models\User;
@@ -169,8 +170,48 @@ class ReservationController extends Controller
     }
 
     public function checkAvailability(Request $request, $reservationID) {
-        $reservation = Reservation::find($reservationID)->pluck('reservationItems');
+        $reservation = Reservation::with('reservationItems')->find($reservationID);
+        $otherReservations = $this->getReservationsWithDatesAndItems($request->get('out'), $request->get('in'), $reservation);
+        $reservationItems = $this->getItemsOnReservations($otherReservations);
+        $tooManyOut = $this->checkIfTooManyAreReserved($reservationItems, $reservation->reservationItems->pluck('itemID'));
 
-        dd($reservation);
+        return response()->json(['error' => $tooManyOut]);
+    }
+
+    private function getReservationsWithDatesAndItems($outDate, $inDate, $reservation) {
+        return Reservation::where('reservation_out_date', '<=', $inDate)
+            ->where('reservation_in_date', '>=', $outDate)
+            ->whereHas('reservationItems', function($query) use ($reservation) {
+                $query->whereIn('itemID', $reservation->reservationItems->pluck('itemID'));
+            })->with('reservationItems')->get();
+    }
+
+    private function getItemsOnReservations($reservations) {
+        $reservationItems = [];
+        foreach($reservations as $reservation) {
+            foreach($reservation->reservationItems as $reservationItem) {
+                if(!isset($reservationItems[$reservationItem->itemID])) {
+                    $reservationItems[$reservationItem->itemID] = 0;
+                }
+                $reservationItems[$reservationItem->itemID] += 1;
+            }
+        }
+
+        return $reservationItems;
+    }
+
+    private function checkIfTooManyAreReserved($reservationItems, $itemsNeeded) {
+        $items = Item::whereIn('id', $itemsNeeded)->get();
+
+        $tooManyOut = false;
+        foreach($items as $item) {
+            if(isset($reservationItems[$item->id])) {
+                if($item->quantity - $reservationItems[$item->id] <= 0) {
+                    $tooManyOut[] = $item->description;
+                }
+            }
+        }
+
+        return $tooManyOut;
     }
 }

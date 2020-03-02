@@ -24,10 +24,10 @@ class ItemController extends Controller
         $isAdmin = $user ? !!$user->is_admin : false;
 
         $today = new Carbon();
-
+        $today = $today->format('Y-m-d');
         $items = Item::all();
-        $reservations = Reservation::where('reservation_out_date', '>=', $today)
-            ->where('reservation_in_date', '<=', $today)->where('user_id', '!=', 0)->with('reservationItems')->get();
+        $reservations = Reservation::where('reservation_out_date', '<=', $today)
+            ->where('reservation_in_date', '>=', $today)->where('user_id', '!=', 0)->with('reservationItems')->get();
 
         $itemsOnReservations = [];
 
