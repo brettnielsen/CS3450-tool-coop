@@ -43,8 +43,10 @@ Route::group(['prefix' => '/reservation'], function() {
     Route::get('destroy/{id}', 'ReservationController@destroy')->middleware('auth');
     Route::get('choose-date/{reservationID}', 'ReservationController@chooseDate')->middleware('auth');
     Route::post('choose-date/{reservationID}', 'ReservationController@setDate')->middleware('auth');
+    Route::get('choose-user/{reservationID}/{userID}', 'ReservationController@setUser')->middleware('auth');
     Route::get('add-item-to-reservation/{itemID}/{reservationID?}', 'ReservationController@AddItem');
     Route::get('delete-reservation-item/{reservationID}/{reservationItemID?}', 'ReservationController@removeItem');
+    Route::get('check-availability/{reservationID}', 'ReservationController@checkAvailability');
 });
 
 Auth::routes();
