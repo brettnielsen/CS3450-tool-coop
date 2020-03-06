@@ -1,8 +1,6 @@
 @section('title', 'Terms and Conditions')
 
-@extends('layouts.app')
-
-@section('cardTitle', 'Terms and conditions')
+@extends('layouts.basic')
 
 @section('content')
     <p>Users are required to abide by the following rules of access and code of conduct</p>

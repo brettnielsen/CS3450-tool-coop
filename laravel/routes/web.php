@@ -31,7 +31,7 @@ Route::group(['prefix' => '/item'], function() {
     Route::get('edit/{id}', 'ItemController@edit')->middleware('auth');
     Route::post('store', 'ItemController@store')->middleware('auth');
     Route::post('update/{id}', 'ItemController@update')->middleware('auth');
-    Route::post('destroy/{id}', 'ItemController@destroy')->middleware('auth');
+    Route::get('destroy/{id}', 'ItemController@destroy')->middleware('auth');
 });
 
 Route::group(['prefix' => '/reservation'], function() {
@@ -40,7 +40,11 @@ Route::group(['prefix' => '/reservation'], function() {
     Route::get('edit/{id}', 'ReservationController@edit')->middleware('auth');
     Route::post('store', 'ReservationController@store')->middleware('auth');
     Route::post('update/{id}', 'ReservationController@update')->middleware('auth');
-    Route::post('destroy/{id}', 'ReservationController@destroy')->middleware('auth');
+    Route::get('destroy/{id}', 'ReservationController@destroy')->middleware('auth');
+    Route::get('choose-date/{reservationID}', 'ReservationController@chooseDate')->middleware('auth');
+    Route::post('choose-date/{reservationID}', 'ReservationController@setDate')->middleware('auth');
+    Route::get('add-item-to-reservation/{itemID}/{reservationID?}', 'ReservationController@AddItem');
+    Route::get('delete-reservation-item/{reservationID}/{reservationItemID?}', 'ReservationController@removeItem');
 });
 
 Auth::routes();

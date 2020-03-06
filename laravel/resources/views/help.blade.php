@@ -1,8 +1,10 @@
 @section('title', 'Information')
 
+
 @extends('layouts.app')
 
 @section('cardTitle', 'Information')
+
 
 @section('content')
     <h1>Common Questions</h1>
