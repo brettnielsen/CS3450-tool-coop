@@ -15,6 +15,10 @@
         <!-- Styles -->
         <style>
 
+            .bottomSpace {
+                padding-bottom: 40px;
+            }
+
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -63,7 +67,7 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 10px;
             }
         </style>
 
@@ -88,45 +92,47 @@
 
 
             <div class="content">
-                <div class="container">
-                <div id="mycarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-                    <ol class="carousel-indicators">
-                        <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#mycarousel" data-slide-to="1"></li>
-                        <li data-target="#mycarousel" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img height="350px" class="d-block w-100" src="systemImages/tool1.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img height="350px" class="d-block w-100" src="systemImages/tool2.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img height="350px" class="d-block w-100" src="systemImages/tool3.jpg" alt="Third slide">
-                        </div>
-                    </div>
 
-                    <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-
-                </div>
-                </div>
                 <div class="title m-b-md">
                     Neighborhood Tool Co-op
                 </div>
 
-                <div class="links">
+                <div class="links bottomSpace">
                     <a href="/item/index">Item Catelog</a>
                     <a href="/terms">Terms and Agreements</a>
                     <a href="/help">Help</a>
+                </div>
 
+
+                <div class="container">
+                    <div id="mycarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+                        <ol class="carousel-indicators">
+                            <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#mycarousel" data-slide-to="1"></li>
+                            <li data-target="#mycarousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img height="350px" class="d-block w-100" src="systemImages/tool1.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img height="350px" class="d-block w-100" src="systemImages/tool2.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img height="350px" class="d-block w-100" src="systemImages/tool3.jpg" alt="Third slide">
+                            </div>
+                        </div>
+
+                        <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </div>
