@@ -89,7 +89,7 @@
 
             <div class="content">
                 <div class="container">
-                <div id="mycarousel" class="carousel slide" data-ride="carousel" data-interval="1000">
+                <div id="mycarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
                     <ol class="carousel-indicators">
                         <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#mycarousel" data-slide-to="1"></li>
@@ -97,13 +97,13 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img height="300px" class="d-block w-100" src="systemImages/tool3.jpg" alt="First slide">
+                            <img height="350px" class="d-block w-100" src="systemImages/tool1.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img height="150px" class="d-block w-100" src="systemImages/tool1.jpg" alt="Second slide">
+                            <img height="350px" class="d-block w-100" src="systemImages/tool2.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="systemImages/tool3.jpg" alt="Third slide">
+                            <img height="350px" class="d-block w-100" src="systemImages/tool3.jpg" alt="Third slide">
                         </div>
                     </div>
 
