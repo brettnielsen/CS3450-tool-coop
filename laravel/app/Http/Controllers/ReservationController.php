@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Reservation;
 use App\Models\ReservationItems;
 use App\Models\User;
@@ -123,15 +124,31 @@ class ReservationController extends Controller
         $user = $userID ? User::find($userID) : false;
         $isAdmin = $user ? !!$user->is_admin : false;
 
+        $reservation = Reservation::find($reservationID);
+
+        //admin needs to choose who reservation is assigned to
         if($isAdmin) {
-            return view('user.chooseUser', compact('reservationID'));
+            //if user has been chosen, show choose dates
+            if($reservation->userID) {
+                return view('reservations.chooseDates', compact('reservationID'));
+            }
+
+            //no user has been chosen, redirect first to choose user
+            $search = $request->get('search');
+            $users = $this->searchUsers($search);
+            return view('user.chooseUser', compact('reservationID', 'users', 'search'));
         }
-        else {
-            $reservation = Reservation::find($reservationID);
+        else { //reservation is assigned to logged in user
             $reservation->userID = $userID;
             $reservation->save();
             return view('reservations.chooseDates', compact('reservationID'));
         }
+    }
+
+    private function searchUsers($search) {
+        $users = User::where('name', 'LIKE', '%'.$search.'%')->orderBy('name')->get();
+
+        return $users;
     }
 
     public function setDate(Request $request, $reservationID) {
@@ -141,5 +158,62 @@ class ReservationController extends Controller
         $reservation->save();
 
         return redirect('/reservation/index');
+    }
+
+    public function setUser(Request $request, $reservationID, $userID) {
+        $reservation = Reservation::find($reservationID);
+        $user = User::findOrFail($userID); //find or fail so that if user doesnt exist, it doesn't add the user
+
+        $reservation->userID = $userID;
+
+        $reservation->save();
+
+        return redirect('/reservation/choose-date/'.$reservationID);
+    }
+
+    public function checkAvailability(Request $request, $reservationID) {
+        $reservation = Reservation::with('reservationItems')->find($reservationID);
+        $otherReservations = $this->getReservationsWithDatesAndItems($request->get('out'), $request->get('in'), $reservation);
+        $reservationItems = $this->getItemsOnReservations($otherReservations);
+        $tooManyOut = $this->checkIfTooManyAreReserved($reservationItems, $reservation->reservationItems->pluck('itemID'));
+
+        return response()->json(['error' => $tooManyOut]);
+    }
+
+    private function getReservationsWithDatesAndItems($outDate, $inDate, $reservation) {
+        return Reservation::where('reservation_out_date', '<=', $inDate)
+            ->where('reservation_in_date', '>=', $outDate)
+            ->whereHas('reservationItems', function($query) use ($reservation) {
+                $query->whereIn('itemID', $reservation->reservationItems->pluck('itemID'));
+            })->with('reservationItems')->get();
+    }
+
+    private function getItemsOnReservations($reservations) {
+        $reservationItems = [];
+        foreach($reservations as $reservation) {
+            foreach($reservation->reservationItems as $reservationItem) {
+                if(!isset($reservationItems[$reservationItem->itemID])) {
+                    $reservationItems[$reservationItem->itemID] = 0;
+                }
+                $reservationItems[$reservationItem->itemID] += 1;
+            }
+        }
+
+        return $reservationItems;
+    }
+
+    private function checkIfTooManyAreReserved($reservationItems, $itemsNeeded) {
+        $items = Item::whereIn('id', $itemsNeeded)->get();
+
+        $tooManyOut = false;
+        foreach($items as $item) {
+            if(isset($reservationItems[$item->id])) {
+                if($item->quantity - $reservationItems[$item->id] <= 0) {
+                    $tooManyOut[] = $item->description;
+                }
+            }
+        }
+
+        return $tooManyOut;
     }
 }
