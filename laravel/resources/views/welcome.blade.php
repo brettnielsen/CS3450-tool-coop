@@ -100,7 +100,7 @@
                 <div class="links bottomSpace">
                     <a href="/item/index">Item Catelog</a>
                     <a href="/terms">Terms and Agreements</a>
-                    <a href="/help">Help</a>
+                    <a href="/help">Contact Us</a>
                 </div>
 
 
