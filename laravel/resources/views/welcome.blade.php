@@ -102,6 +102,7 @@
                     <a href="/terms">Terms and Agreements</a>
                     <a href="/help">Help</a>
                     <a href="/projects">projects</a>
+
                 </div>
 
                 <div class="container">
