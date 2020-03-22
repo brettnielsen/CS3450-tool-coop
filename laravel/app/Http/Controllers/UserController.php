@@ -6,6 +6,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,7 +16,22 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
+        $userID = Auth::id();
+        $user = $userID ? \App\Models\User::find($userID) : false;
+        $isAdmin = $user ? !!$user->is_admin : false;
+
+        if($isAdmin) {
+            $search = $request->search;
+            if($search) {
+                $users = User::where('name', 'LIKE', '%'.$search.'%')->orderBy('name')->get();
+            }
+            else {
+                $users = User::all()->sortBy('name');
+            }
+
+            return view('user.chooseUser', compact('users', 'search'));
+        }
+
 
         return view('user.index', compact('users'));
     }
