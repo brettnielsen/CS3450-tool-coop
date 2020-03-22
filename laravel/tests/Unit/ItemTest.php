@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ItemTest extends TestCase
 {
@@ -11,8 +11,11 @@ class ItemTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testItemsShowWithoutAuth()
     {
-        $this->assertTrue(true);
+        $response = $this->get('/item/index');
+
+        $response->assertStatus(200);
+        $response->assertSee('Item Catalog');
     }
 }
