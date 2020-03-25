@@ -20,7 +20,7 @@ Route::group(['prefix' => '/user'], function() {
     Route::get('index', 'UserController@index')->middleware('auth');
     Route::get('new', 'UserController@new')->middleware('auth');
     Route::get('edit/{id}', 'UserController@edit')->middleware('auth');
-    Route::post('store', 'UserController@store')->middleware('auth');
+    Route::get('store', 'UserController@store')->middleware('auth');
     Route::post('update/{id}', 'UserController@update')->middleware('auth');
     Route::post('destroy/{id}', 'UserController@destroy')->middleware('auth');
 });

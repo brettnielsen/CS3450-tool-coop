@@ -13,16 +13,16 @@
         <form action="/item/store" method="post" enctype="multipart/form-data">
             @csrf
             <label for="description">Title: </label>
-            <input type="text" id="description" name="description" required>
+            <input type="text" id="description" name="description" required class="form-control">
             <br>
             <label for="quantity">Quantity: </label>
-            <input type="text" id="quantity" name="quantity" required>
+            <input type="text" id="quantity" name="quantity" required class="form-control">
             <br>
             <label for="location">Location Information: </label>
-            <input type="text" id="location" name="location" value="">
+            <input type="text" id="location" name="location" value="" class="form-control">
             <br>
             <label for="image">Image: </label>
-            <input type="file" id="image" name="image">
+            <input type="file" id="image" name="image" class="form-control">
             <br>
             <div style="padding-top: 15px;">
                 <a class="btn btn-light" href="/item/index">Cancel</a>

@@ -58,12 +58,21 @@ class UserController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\UserStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->address = $request->get('address');
+        $user->city = $request->get('city');
+        $user->state = $request->get('state');
+        $user->zip = $request->get('zip');
+        $user->phone = $request->get('phone');
+        $user->password = '';
+
+        $user->save();
 
         return redirect()->route('user.index');
     }
@@ -76,7 +85,13 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
-
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->address = $request->get('address');
+        $user->city = $request->get('city');
+        $user->state = $request->get('state');
+        $user->zip = $request->get('zip');
+        $user->phone = $request->get('phone');
         $user->save();
 
         return redirect()->route('user.edit', [$user]);

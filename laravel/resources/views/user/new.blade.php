@@ -9,6 +9,38 @@
 @section('cardTitle', 'New User')
 
 @section('content')
-    <p>new</p>
+    <div style="padding: 15px;">
+        <form action="/user/store" method="get">
+            @csrf
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+            <br>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+            <br>
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" class="form-control" required>
+            <br>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-control" required>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="zip">Zip</label>
+                    <input type="text" id="zip" name="zip" class="form-control" required>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
 
 @endsection
