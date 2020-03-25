@@ -28,7 +28,12 @@
                         <tr>
                             @if($isAdmin)
                                 <td>
-                                    <b>{{$reservation->user->name}}</b
+                                    <b>{{$reservation->user->name}}</b>
+
+                                    @if($reservation->check_out_date)
+                                        <p style="padding-bottom: 0; margin-bottom: 0; margin-top: 10px; white-space: nowrap">Checked out on:</p>
+                                        <p style="padding-top: 0; margin-top: 0;">{{$reservation->check_out_date}}</p>
+                                    @endif
                                 </td>
                             @endif
                             <td>
@@ -44,12 +49,15 @@
                                     </div>
                                 @endforeach
                             </td>
-
-                            @if(!$reservation->check_out_date)
-                                <td>
+                            <td>
+                                @if(!$reservation->check_out_date)
                                     <a class="btn btn-danger btn-sm" href="/reservation/destroy/{{$reservation->id}}">Delete</a>
-                                </td>
-                            @endif
+                                @endif
+
+                                @if($isAdmin)
+                                    <a class="btn btn-primary btn-sm" style="color: white">Check Out</a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
