@@ -24,14 +24,14 @@ class ReservationController extends Controller
         $date = new Carbon();
 
         if($isAdmin) {
-            $reservations = Reservation::where('reservation_out_date', '>=', $date->format('Y-m-d'))->get();
+            $reservations = Reservation::where('reservation_out_date', '>=', $date->format('Y-m-d'))->with('user')->get();
         }
         else {
             $reservations= Reservation::where('userID', $userID)->where('reservation_out_date', '>=', $date->format('Y-m-d'))->with(['reservationItems' => function($query) {
                 $query->with('item');
             }])->get();
         }
-        return view('reservations.index', compact('reservations'));
+        return view('reservations.index', compact('reservations', 'isAdmin'));
     }
 
     /**

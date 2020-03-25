@@ -40,4 +40,9 @@ class Reservation extends Model
     {
         return $this->hasManyThrough(Item::class, ReservationItems::class, 'itemID', 'id', 'itemID', 'itemID');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID', 'id');
+    }
 }

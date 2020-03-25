@@ -14,6 +14,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        @if($isAdmin)
+                            <th>Name</th>
+                        @endif
                         <th>Pick Up Date</th>
                         <th>Return Date</th>
                         <th>Items</th>
@@ -23,8 +26,16 @@
                 <tbody>
                     @foreach($reservations as $reservation)
                         <tr>
-                            <td>{{$reservation->reservation_out_date}}</td>
-                            <td>{{$reservation->reservation_in_date}}</td>
+                            @if($isAdmin)
+                                <td>
+                                    <b>{{$reservation->user->name}}</b
+                                </td>
+                            @endif
+                            <td>
+                                {{$reservation->reservation_out_date}}
+                            <td>
+                                {{$reservation->reservation_in_date}}
+                            </td>
                             <td>
                                 @foreach($reservation->reservationItems as $reservationItem)
                                     <div style="display: grid; grid-template-columns: 25px 1fr; gap: 5px;">
