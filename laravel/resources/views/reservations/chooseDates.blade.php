@@ -16,11 +16,14 @@
             <input type="date" id="reservation_out_date" name="reservation_out_date">
             <label for="reservation_in_date">Return Date</label>
             <input type="date" id="reservation_in_date" name="reservation_in_date">
-            <button class="btn btn-success btn-sm" type="submit">Reserve</button>
+            <button onclick="Reserved()" class="btn btn-success btn-sm" type="submit">Reserve</button>
         </form>
     </div>
 
     <script>
+        function Reserved() {
+            alert("Your reservation has been made.");
+        }
         function validateForm() {
             const outDate = document.getElementById('reservation_out_date').value;
             const inDate = document.getElementById('reservation_in_date').value;
