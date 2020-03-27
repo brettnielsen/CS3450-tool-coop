@@ -29,20 +29,16 @@ class ItemTest extends TestCase
         $response->assertDontSee('New Item');
     }
 
-    public function testItemsNew() {
+    public function testItemsNewRedirectNotAdmin() {
         $response = $this->get('/item/new');
 
-        $response->assertStatus(200);
-        $response->assertSee('New Item');
-        $response->assertSee('Save');
+        $response->assertStatus(302);
     }
 
-    public function testItemEdit() {
+    public function testItemEditRedirectNotAdmin() {
         $response = $this->get('/item/edit/1');
 
-        $response->assertStatus(200);
-        $response->assertSee('Edit Item');
-        $response->assertSee('Save');
-        $response->assertSee('Delete Item');
+        $response->assertStatus(302);
+
     }
 }
