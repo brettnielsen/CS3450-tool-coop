@@ -2,7 +2,7 @@
 @section('title', 'Information')
 
 
-@extends('layouts.withoutRightCard')
+@extends('layouts.app')
 
 @section('cardTitle', 'Information')
 
