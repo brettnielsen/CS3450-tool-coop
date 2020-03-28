@@ -6,6 +6,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,9 +16,24 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
+        $userID = Auth::id();
+        $user = $userID ? \App\Models\User::find($userID) : false;
+        $isAdmin = $user ? !!$user->is_admin : false;
 
-        return view('user.index', compact('users'));
+        if($isAdmin) {
+            $search = $request->search;
+            if($search) {
+                $users = User::where('name', 'LIKE', '%'.$search.'%')->orderBy('name')->get();
+            }
+            else {
+                $users = User::all()->sortBy('name');
+            }
+
+            return view('user.chooseUser', compact('users', 'search'));
+        }
+
+
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -42,12 +58,21 @@ class UserController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\UserStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->address = $request->get('address');
+        $user->city = $request->get('city');
+        $user->state = $request->get('state');
+        $user->zip = $request->get('zip');
+        $user->phone = $request->get('phone');
+        $user->password = '';
+
+        $user->save();
 
         return redirect()->route('user.index');
     }
@@ -60,7 +85,13 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
-
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->address = $request->get('address');
+        $user->city = $request->get('city');
+        $user->state = $request->get('state');
+        $user->zip = $request->get('zip');
+        $user->phone = $request->get('phone');
         $user->save();
 
         return redirect()->route('user.edit', [$user]);

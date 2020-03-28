@@ -10,13 +10,17 @@
 
 @section('content')
     <div style="text-align: center; padding: 15px; display: grid; grid-template-columns: 5fr 1fr">
-        <form method="get" action="/reservation/choose-date/{{$reservationID}}">
-            <label>Search:</label>
-            <input type="text" name="search" value="{{$search}}">
-            <button type="submit" class="btn btn-primary btn-sm">Search</button>
-        </form>
+        @if(isset($reservationID))
+            <form method="get" action="/reservation/choose-date/{{$reservationID}}">
+        @else
+            <form method="get" action="/user/index">
+        @endif
+                <label>Search:</label>
+                <input type="text" name="search" value="{{$search}}">
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            </form>
 
-        <a class="btn btn-success" style="color: white">New User</a>
+        <a class="btn btn-success" style="color: white" href="/user/new">New User</a>
     </div>
 
     <div>
@@ -33,7 +37,12 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td><a class="btn btn-sm btn-secondary" href="/reservation/choose-user/{{$reservationID}}/{{$user->id}}">Select</a></td>
+
+                        @if(isset($reservationID))
+                            <td><a class="btn btn-sm btn-secondary" href="/reservation/choose-user/{{$reservationID}}/{{$user->id}}">Select</a></td>
+                        @else
+                            <td><a class="btn btn-sm btn-secondary" href="/user/edit/{{$user->id}}">Info</a></td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
