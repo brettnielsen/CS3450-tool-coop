@@ -100,9 +100,10 @@
                 <div class="links bottomSpace">
                     <a href="/item/index">Item Catelog</a>
                     <a href="/terms">Terms and Agreements</a>
-                    <a href="/help">Contact Us</a>
-                </div>
+                    <a href="/help">Help</a>
+                    <a href="/projects">projects</a>
 
+                </div>
 
                 <div class="container">
                     <div id="mycarousel" class="carousel slide" data-ride="carousel" data-interval="5000">

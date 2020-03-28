@@ -61,3 +61,4 @@ Route::get('user/new', 'UserController@new');
 
 Route::view('/terms', 'terms');
 Route::view('/help', 'help');
+Route::view('/projects', "projects");
