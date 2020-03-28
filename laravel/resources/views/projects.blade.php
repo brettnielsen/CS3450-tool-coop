@@ -1,13 +1,12 @@
 @section('title', 'Projects')
 
-@extends('layouts.basic')
+@extends('layouts.withoutRightCard')
 
 @section('content')
     <head>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Projects</title>
 
         <!-- Fonts -->
@@ -38,7 +37,7 @@
     </div>
 
     <div class="container">
-        <h1 style="padding-left: 350px">The spielburg family</h1>
+        <h1>The spielburg family</h1>
         <div>
             <img height="1000" width="500" src="systemImages/project2.jpg">
             <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -58,7 +57,7 @@
     </div>
 
     <div class="container">
-        <h1 style="padding-left: 250px">The Johnson family</h1>
+        <h1>The Johnson family</h1>
         <div>
             <img height="1000" width="600" src="systemImages/project3.jpg">
             <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
