@@ -15,7 +15,7 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a href="/user/index" class="nav-link">Users</a>
+                        <a href="/user/index" class="nav-link">User</a>
                     </li>
                     <li class="nav-item">
                         <a href="/reservation/index" class="nav-link">Reservations</a>
@@ -47,11 +47,13 @@
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
+                            <a href="/user/index" class="dropdown-item">Edit User</a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
+
                     </li>
                 @endguest
             </ul>
