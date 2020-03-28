@@ -3,6 +3,19 @@
 @extends('layouts.withoutRightCard')
 
 @section('content')
+
+    <style>
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .font {
+            font-style: italic;
+        }
+    </style>
+
+
     <head>
 
         <meta charset="utf-8">
@@ -18,7 +31,7 @@
     <div class="container">
         <h1 class="flex-center">The Walt family</h1>
         <div>
-            <img height="700" width="1200" src="systemImages/project1.jpg">
+            <img height="700" width="700" src="systemImages/project1.jpg">
             <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in metus
                 vulputate eu scelerisque felis. Sit amet consectetur adipiscing elit.
@@ -39,7 +52,7 @@
     <div class="container">
         <h1>The spielburg family</h1>
         <div>
-            <img height="1000" width="500" src="systemImages/project2.jpg">
+            <img height="700" width="700" src="systemImages/project2.jpg">
             <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in metus
                 vulputate eu scelerisque felis. Sit amet consectetur adipiscing elit.
@@ -53,13 +66,14 @@
                 pulvinar sapien et ligula. Ornare quam viverra orci sagittis eu volutpat odio.
                 Viverra nam libero justo laoreet sit amet cursus. Faucibus purus in massa tempor
                 nec."
-            </p>        </div>
+            </p>
+        </div>
     </div>
 
     <div class="container">
         <h1>The Johnson family</h1>
         <div>
-            <img height="1000" width="600" src="systemImages/project3.jpg">
+            <img height="700" width="500" src="systemImages/project3.jpg">
             <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in metus
                 vulputate eu scelerisque felis. Sit amet consectetur adipiscing elit.
