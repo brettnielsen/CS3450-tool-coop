@@ -1,23 +1,14 @@
 @section('title', 'Projects')
 
-@extends('layouts.withoutRightCard')
+@extends('layouts.app')
 
 @section('content')
 
-    <style>
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-        .font {
-            font-style: italic;
-        }
-    </style>
-
+@section('cardTitle')
+    <p class="display-4 text-center">---projects---</p>
+@endsection
 
     <head>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Projects</title>
@@ -26,13 +17,12 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     </head>
-
     <body>
-    <div class="container">
-        <h1 class="flex-center">The Walt family</h1>
+    <div class="container text-center" >
+        <h1 class="pb-3 pt-5">The Walt family</h1>
         <div>
-            <img height="700" width="700" src="systemImages/project1.jpg">
-            <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            <img class="p-2 border border-dark rounded" height="700" width="700" src="systemImages/project1.jpg">
+            <p class="font-italic pt-3 pb-5 font-weight-light" >"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in metus
                 vulputate eu scelerisque felis. Sit amet consectetur adipiscing elit.
                 Ut faucibus pulvinar elementum integer enim neque volutpat. Amet cursus
@@ -49,11 +39,11 @@
         </div>
     </div>
 
-    <div class="container">
-        <h1>The spielburg family</h1>
+    <div class="container text-center">
+        <h1 class="pb-3">The spielburg family</h1>
         <div>
-            <img height="700" width="700" src="systemImages/project2.jpg">
-            <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            <img class="p-2 border border-dark rounded-pill" height="700" width="700" src="systemImages/project2.jpg">
+            <p class="font-italic pt-3 pb-5 font-weight-light">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in metus
                 vulputate eu scelerisque felis. Sit amet consectetur adipiscing elit.
                 Ut faucibus pulvinar elementum integer enim neque volutpat. Amet cursus
@@ -70,11 +60,11 @@
         </div>
     </div>
 
-    <div class="container">
-        <h1>The Johnson family</h1>
+    <div class="text-center">
+        <h1 class="pb-3">The Johnson family</h1>
         <div>
-            <img height="700" width="500" src="systemImages/project3.jpg">
-            <p class="font">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            <img class="p-2 border border-dark rounded" height="700" width="500" src="systemImages/project3.jpg">
+            <p class="font-italic pt-3 pb-5 font-weight-light">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in metus
                 vulputate eu scelerisque felis. Sit amet consectetur adipiscing elit.
                 Ut faucibus pulvinar elementum integer enim neque volutpat. Amet cursus
