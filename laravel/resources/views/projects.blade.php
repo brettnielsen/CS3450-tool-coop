@@ -2,11 +2,11 @@
 
 @extends('layouts.app')
 
-@section('content')
-
 @section('cardTitle')
     <p class="display-4 text-center">---projects---</p>
 @endsection
+
+@section('content')
 
     <head>
         <meta charset="utf-8">
