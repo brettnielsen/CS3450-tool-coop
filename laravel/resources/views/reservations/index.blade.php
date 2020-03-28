@@ -14,6 +14,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        @if($isAdmin)
+                            <th>Name</th>
+                        @endif
                         <th>Pick Up Date</th>
                         <th>Return Date</th>
                         <th>Items</th>
@@ -23,8 +26,37 @@
                 <tbody>
                     @foreach($reservations as $reservation)
                         <tr>
-                            <td>{{$reservation->reservation_out_date}}</td>
-                            <td>{{$reservation->reservation_in_date}}</td>
+                            @if($isAdmin)
+                                <td>
+                                    <b>{{$reservation->user->name}}</b>
+
+                                    @if($reservation->check_out_date)
+                                        <div style="font-size: small">
+                                            <p style="padding-bottom: 0; margin-bottom: 0; margin-top: 10px; white-space: nowrap">Checked out on:</p>
+                                            <p style="padding-top: 0; margin-top: 0;">{{$reservation->check_out_date}}</p>
+                                        </div>
+                                    @endif
+
+                                    @if($reservation->check_in_date)
+                                        <div style="font-size: small">
+                                            <p style="padding-bottom: 0; margin-bottom: 0; margin-top: 10px; white-space: nowrap">Checked in on:</p>
+                                            <p style="padding-top: 0; margin-top: 0;">{{$reservation->check_in_date}}</p>
+                                        </div>
+                                    @endif
+                                </td>
+                            @endif
+                            <td>
+                                {{$reservation->reservation_out_date}}
+                            <td>
+                                <div style="{{$today < $reservation->reservation_in_date ? 'color: red' : ''}}">
+                                    {{$reservation->reservation_in_date}}
+
+                                    @if($reservation->check_out_date && $today < $reservation->reservation_in_date)
+                                        <br>
+                                        <b>PAST DUE</b>
+                                    @endif
+                                </div>
+                            </td>
                             <td>
                                 @foreach($reservation->reservationItems as $reservationItem)
                                     <div style="display: grid; grid-template-columns: 25px 1fr; gap: 5px;">
@@ -33,12 +65,19 @@
                                     </div>
                                 @endforeach
                             </td>
-
-                            @if(!$reservation->check_out_date)
-                                <td>
+                            <td>
+                                @if(!$reservation->check_out_date)
                                     <a class="btn btn-danger btn-sm" href="/reservation/destroy/{{$reservation->id}}">Delete</a>
-                                </td>
-                            @endif
+                                @endif
+
+                                @if($isAdmin && !$reservation->check_out_date)
+                                    <a class="btn btn-primary btn-sm" style="color: white" href="/reservation/mark-checked-out/{{$reservation->id}}">Check Out</a>
+                                @endif
+
+                                @if($isAdmin && $reservation->check_out_date && !$reservation->check_in_date)
+                                        <a class="btn btn-primary btn-sm" style="color: white" href="/reservation/mark-checked-in/{{$reservation->id}}">Check In</a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

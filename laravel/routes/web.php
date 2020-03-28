@@ -47,6 +47,8 @@ Route::group(['prefix' => '/reservation'], function() {
     Route::get('add-item-to-reservation/{itemID}/{reservationID?}', 'ReservationController@AddItem');
     Route::get('delete-reservation-item/{reservationID}/{reservationItemID?}', 'ReservationController@removeItem');
     Route::get('check-availability/{reservationID}', 'ReservationController@checkAvailability');
+    Route::get('mark-checked-out/{reservationID}', 'ReservationController@checkOut');
+    Route::get('mark-checked-in/{reservationID}', 'ReservationController@checkin');
 });
 
 Auth::routes();

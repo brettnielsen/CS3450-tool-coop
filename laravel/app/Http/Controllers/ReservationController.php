@@ -22,16 +22,17 @@ class ReservationController extends Controller
         $user = $userID ? User::find($userID) : false;
         $isAdmin = $user ? !!$user->is_admin : false;
         $date = new Carbon();
+        $today = $date->format('Y-m-d H:m:s');
 
         if($isAdmin) {
-            $reservations = Reservation::where('reservation_out_date', '>=', $date->format('Y-m-d'))->get();
+            $reservations = Reservation::where('reservation_out_date', '>=', $date->format('Y-m-d'))->with('user')->get();
         }
         else {
             $reservations= Reservation::where('userID', $userID)->where('reservation_out_date', '>=', $date->format('Y-m-d'))->with(['reservationItems' => function($query) {
                 $query->with('item');
             }])->get();
         }
-        return view('reservations.index', compact('reservations'));
+        return view('reservations.index', compact('reservations', 'isAdmin', 'today'));
     }
 
     /**
@@ -215,5 +216,25 @@ class ReservationController extends Controller
         }
 
         return $tooManyOut;
+    }
+
+    public function checkOut(Request $request, $reservationID) {
+        $date = new Carbon();
+
+        $reservation = Reservation::find($reservationID);
+        $reservation->check_out_date = $date->format('Y-m-d H:m:s');
+        $reservation->save();
+
+        return redirect('/reservation/index');
+    }
+
+    public function checkIn(Request $request, $reservationID) {
+        $date = new Carbon();
+
+        $reservation = Reservation::find($reservationID);
+        $reservation->check_in_date = $date->format('Y-m-d H:m:s');
+        $reservation->save();
+
+        return redirect('/reservation/index');
     }
 }
