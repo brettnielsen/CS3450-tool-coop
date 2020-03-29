@@ -22,7 +22,7 @@
             <label for="reservation_in_date">Return Date</label>
             <input type="date" id="reservation_in_date" name="reservation_in_date">
             <button class="btn btn-primary btn-sm" type="button" id="checkAvail">Check Availability</button>
-            <button class="btn btn-success btn-sm" type="submit" id="submitReservation" style="display: none">Reserve</button>
+            <button onclick="alert('Your reservation has been made.');" class="btn btn-success btn-sm" type="submit" id="submitReservation" style="display: none">Reserve</button>
         </form>
 
         <div>
