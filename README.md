@@ -1,6 +1,7 @@
 # CS3450-tool-coop 
 
 ##Can be found at toolco-op.com
+###For admin account use admin@admin.com with password adminuser
 
 ## Organization
 #### The neighborhood tool co-op offers customers to pay a monthly fee to allow them to checkout tools to use when they need them.  The tool co-op needs a way to keep track of inventory, reservations, customers, and fees.
