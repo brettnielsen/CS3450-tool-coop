@@ -51,6 +51,20 @@ Route::group(['prefix' => '/reservation'], function() {
     Route::get('mark-checked-in/{reservationID}', 'ReservationController@checkin');
 });
 
+Route::group(['prefix' => 'reports'], function() {
+    Route::get('index', 'ReportsController@index')->middleware('auth');
+
+    Route::group(['prefix' => 'criteria'], function() {
+        Route::get('reservations', 'ReportsController@reservationReportCriteria')->middleware('auth');
+        Route::get('reservations/customers', 'ReportsController@reservationCustomerCriteria')->middleware('auth');
+        Route::get('reservations/items', 'ReportsController@reservationItemCriteria')->middleware('auth');
+    });
+
+    Route::get('reservations', 'ReportsController@reservationReport')->middleware('auth');
+    Route::get('reservations/customers', 'ReportsController@reservationCustomer')->middleware('auth');
+    Route::get('reservations/items', 'ReportsController@reservationItem')->middleware('auth');
+});
+
 Auth::routes();
 
 Route::get('/home', 'ItemController@index');
