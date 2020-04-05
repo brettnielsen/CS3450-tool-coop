@@ -27,18 +27,18 @@
             </tr>
             <tr>
                 <td>
-                    <a href="/reports/criteria/reservations/customers">Reservations by Customer</a>
+                    <a href="/reports/criteria/customers">Customers</a>
                 </td>
                 <td>
-                    Get reservations within a time frame by a specific customer
+                    Get customer information
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="/reports/criteria/reservations/items">Reservations by Tool</a>
+                    <a href="/reports/criteria/items">Items</a>
                 </td>
                 <td>
-                    Get reservations made within a time frame for a specific tool
+                    Get item information
                 </td>
             </tr>
         </tbody>

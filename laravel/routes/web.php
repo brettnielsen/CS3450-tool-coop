@@ -56,13 +56,13 @@ Route::group(['prefix' => 'reports'], function() {
 
     Route::group(['prefix' => 'criteria'], function() {
         Route::get('reservations', 'ReportsController@reservationReportCriteria')->middleware('auth');
-        Route::get('reservations/customers', 'ReportsController@reservationCustomerCriteria')->middleware('auth');
-        Route::get('reservations/items', 'ReportsController@reservationItemCriteria')->middleware('auth');
+        Route::get('customers', 'ReportsController@reservationCustomerCriteria')->middleware('auth');
+        Route::get('items', 'ReportsController@reservationItemCriteria')->middleware('auth');
     });
 
     Route::get('reservations', 'ReportsController@reservationReport')->middleware('auth');
-    Route::get('reservations/customers', 'ReportsController@reservationCustomer')->middleware('auth');
-    Route::get('reservations/items', 'ReportsController@reservationItem')->middleware('auth');
+    Route::get('customers', 'ReportsController@reservationCustomer')->middleware('auth');
+    Route::get('items', 'ReportsController@reservationItem')->middleware('auth');
 });
 
 Auth::routes();
