@@ -2,10 +2,20 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('layouts.head')
+
+    <style>
+        @media print {
+            .noprint {
+                visibility: hidden;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        @include('layouts.navbar')
+        <div class="noprint">
+            @include('layouts.navbar')
+        </div>
 
         <main class="py-4">
             @yield('content')

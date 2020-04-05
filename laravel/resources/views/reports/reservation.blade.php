@@ -1,6 +1,6 @@
 @section('title', 'Reports')
 
-@extends('layouts.app')
+@extends('layouts.report')
 
 @section('cardTitle')
     <div>
@@ -8,7 +8,7 @@
     </div>
 @endsection
 
-@section('content')
+@section('report')
     <table class="table table-striped">
         <thead>
             <tr>
