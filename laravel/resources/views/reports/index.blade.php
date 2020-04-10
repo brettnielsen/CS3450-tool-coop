@@ -30,7 +30,7 @@
                     <a href="/reports/criteria/customers">Customers</a>
                 </td>
                 <td>
-                    Get customer information
+                    Get customer information within a time frame
                 </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                     <a href="/reports/criteria/items">Items</a>
                 </td>
                 <td>
-                    Get item information
+                    Get item information within a time frame
                 </td>
             </tr>
         </tbody>
