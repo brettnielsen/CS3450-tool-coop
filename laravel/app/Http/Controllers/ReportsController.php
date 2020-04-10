@@ -4,7 +4,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Item;
 use App\Models\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -42,6 +44,26 @@ class ReportsController extends Controller
     }
 
     public function itemReport(Request $request) {
-        return view('reports.item');
+        $start = $request->get('start', false);
+        $end = $request->get('end', false);
+
+        $start = new Carbon($start);
+        $end = new Carbon($end);
+
+
+        if($start && $end) {
+            $items = Item::where('created_at', '>=', $start->format('Y-m-d'))->where('created_at', '<=', $end->format('Y-m-d'))->get();
+        }
+        else if($start) {
+            $items = Item::where('created_at', '>=', $start->format('Y-m-d'))->get();
+        }
+        else if($end) {
+            $items = Item::where('created_at', '<=', $end->format('Y-m-d'))->get();
+        }
+        else {
+            $items = Item::all();
+        }
+
+        return view('reports.item', ['items' => $items]);
     }
 }

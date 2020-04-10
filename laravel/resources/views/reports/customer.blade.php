@@ -4,6 +4,6 @@
 
 @section('cardTitle', 'Reports')
 
-@section('content')
+@section('report')
 
 @endsection
