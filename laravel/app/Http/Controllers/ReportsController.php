@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Reservation;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -35,10 +36,6 @@ class ReportsController extends Controller
         return view('reports.customerCriteria');
     }
 
-    public function customerReport(Request $request) {
-        return view('reports.customer');
-    }
-
     public function itemCriteria(Request $request) {
         return view('reports.itemCriteria');
     }
@@ -66,4 +63,29 @@ class ReportsController extends Controller
 
         return view('reports.item', ['items' => $items]);
     }
+
+    public function customerReport(Request $request) {
+        $start = $request->get('start', false);
+        $end = $request->get('end', false);
+
+        $start = new Carbon($start);
+        $end = new Carbon($end);
+
+
+        if($start && $end) {
+            $customers = User::where('created_at', '>=', $start->format('Y-m-d'))->where('created_at', '<=', $end->format('Y-m-d'))->get();
+        }
+        else if($start) {
+            $customers = User::where('created_at', '>=', $start->format('Y-m-d'))->get();
+        }
+        else if($end) {
+            $customers = User::where('created_at', '<=', $end->format('Y-m-d'))->get();
+        }
+        else {
+            $customers = User::all();
+        }
+//        ['customers' => $customers];
+        return view('reports.customer', compact('customers','start', 'end'));
+    }
+
 }

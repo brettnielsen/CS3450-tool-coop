@@ -2,7 +2,7 @@
 
 @extends('layouts.report')
 
-@section('cardTitle', 'Reports')
+@section('cardTitle', 'Items Report')
 
 @section('report')
 
