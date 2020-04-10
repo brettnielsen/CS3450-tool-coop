@@ -6,7 +6,34 @@
 
 @extends('layouts.app')
 
-@section('cardTitle', 'Reservations')
+@section('cardTitle')
+    <b>Reservations</b>
+    <form method="get">
+        <span class="float-right">
+        <button>Clear Filter</button>
+        </span>
+    </form>
+
+    <form method="get">
+        <span class="float-right">
+            <button>Filter-PickUp</button>
+        </span>
+
+        <span class="float-right">
+            <label for="date">Date: </label>
+            <input  name="date" id="date" type="date">
+        </span>
+    </form>
+
+    <script>
+        $(document).ready( function() {
+            var day = new Date().toISOString().slice(0,10);
+            console.log(day);
+            document.getElementById('date').value = day;
+        });
+    </script>
+
+@endsection
 
 @section('content')
     <div>
