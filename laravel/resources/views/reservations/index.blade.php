@@ -7,29 +7,42 @@
 @extends('layouts.app')
 
 @section('cardTitle')
-    <b>Reservations</b>
-    <form method="get">
-        <span class="float-right">
-        <button>Clear Filter</button>
-        </span>
-    </form>
+    <b style="font-size: 125%">Reservations</b>
+    <div class="d-inline-flex float-right">
+        <form method="get">
+            <span class="float-right">
+                <button>Filter-PickUp</button>
+            </span>
 
-    <form method="get">
-        <span class="float-right">
-            <button>Filter-PickUp</button>
-        </span>
+                <span class="float-right">
+                <label for="date">Date: </label>
+                <input  name="date" id="date" type="date">
+            </span>
+        </form>
+        <form method="get">
+            <span class="float-right">
+                <button>Clear Filter</button>
+            </span>
+        </form>
+    </div>
 
-        <span class="float-right">
-            <label for="date">Date: </label>
-            <input  name="date" id="date" type="date">
-        </span>
-    </form>
 
     <script>
         $(document).ready( function() {
-            var day = new Date().toISOString().slice(0,10);
-            console.log(day);
-            document.getElementById('date').value = day;
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+            document.getElementById('date').value = formatDate(new Date());
         });
     </script>
 
