@@ -38,7 +38,7 @@ class Reservation extends Model
 
     public function items()
     {
-        return $this->hasManyThrough(Item::class, ReservationItems::class, 'itemID', 'id', 'itemID', 'itemID');
+        return $this->hasManyThrough(Item::class, ReservationItems::class, 'reservationID', 'id', 'id', 'itemID');
     }
 
     public function user()

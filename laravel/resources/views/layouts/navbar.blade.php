@@ -20,6 +20,19 @@
                     <li class="nav-item">
                         <a href="/reservation/index" class="nav-link">Reservations</a>
                     </li>
+
+                    @php
+                        $userID = Auth::id();
+                        $user = $userID ? \App\Models\User::find($userID) : false;
+                        $isAdmin = $user ? !!$user->is_admin : false;
+                    @endphp
+
+                    @if($isAdmin)
+                        <li class="nav-item">
+                            <a href="/reports/index" class="nav-link">Reports</a>
+                        </li>
+                    @endif
+
                 @endauth
             </ul>
 
