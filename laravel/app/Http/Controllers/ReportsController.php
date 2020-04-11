@@ -44,8 +44,8 @@ class ReportsController extends Controller
         $start = $request->get('start', false);
         $end = $request->get('end', false);
 
-        $start = new Carbon($start);
-        $end = new Carbon($end);
+        $start = $start ? new Carbon($start) : false;
+        $end = $end ? new Carbon($end) : false;
 
 
         if($start && $end) {
@@ -68,8 +68,8 @@ class ReportsController extends Controller
         $start = $request->get('start', false);
         $end = $request->get('end', false);
 
-        $start = new Carbon($start);
-        $end = new Carbon($end);
+        $start = $start ? new Carbon($start) : false;
+        $end = $end ? new Carbon($end) : false;
 
 
         if($start && $end) {

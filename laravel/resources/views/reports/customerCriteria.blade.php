@@ -8,7 +8,7 @@
     <form method="get" action="/reports/customers">
         <p>Leaving date fields empty will select all customers.</p>
         <label for="start">Start Date</label>
-        <input type="date" id="start" name="start">
+        <input type="date" id="start" name="start" >
 
         <label for="end">End Date</label>
         <input type="date" id="end" name="end">
