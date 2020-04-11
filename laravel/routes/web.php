@@ -21,7 +21,7 @@ Route::group(['prefix' => '/user'], function() {
     Route::get('new', 'UserController@new')->middleware('auth');
     Route::get('edit/{id}', 'UserController@edit')->middleware('auth');
     Route::get('store', 'UserController@store')->middleware('auth');
-    Route::post('update/{id}', 'UserController@update')->middleware('auth');
+    Route::get('update/{id}', 'UserController@update')->middleware('auth');
     Route::post('destroy/{id}', 'UserController@destroy')->middleware('auth');
 });
 

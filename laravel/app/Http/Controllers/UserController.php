@@ -33,7 +33,7 @@ class UserController extends Controller
         }
 
 
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('user', 'isAdmin'));
     }
 
     /**
@@ -53,8 +53,11 @@ class UserController extends Controller
     public function edit(Request $request, $id)
     {
         $user = User::find($id);
-
-        return view('user.edit', compact('user'));
+        $userID = Auth::id();
+        $userAdmin = $userID ? \App\Models\User::find($userID) : false;
+        $isAdmin = $userAdmin ? !!$userAdmin->is_admin : false;
+        
+        return view('user.edit', compact('user', 'isAdmin'));
     }
 
     /**
@@ -70,6 +73,7 @@ class UserController extends Controller
         $user->state = $request->get('state');
         $user->zip = $request->get('zip');
         $user->phone = $request->get('phone');
+        $user->isAdmin = $request ->get('isAdmin');
         $user->password = '';
 
         $user->save();
@@ -82,7 +86,7 @@ class UserController extends Controller
      * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
         $user->name = $request->get('name');
@@ -92,6 +96,7 @@ class UserController extends Controller
         $user->state = $request->get('state');
         $user->zip = $request->get('zip');
         $user->phone = $request->get('phone');
+        $user->is_admin = $request->get('isAdmin') == 'on';
         $user->save();
 
         return redirect()->route('user.edit', [$user]);

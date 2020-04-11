@@ -15,7 +15,7 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a href="/user/index" class="nav-link">User</a>
+                        <a href="/user/index" class="nav-link">Users</a>
                     </li>
                     <li class="nav-item">
                         <a href="/reservation/index" class="nav-link">Reservations</a>
@@ -66,7 +66,6 @@
                                 @csrf
                             </form>
                         </div>
-
                     </li>
                 @endguest
             </ul>
