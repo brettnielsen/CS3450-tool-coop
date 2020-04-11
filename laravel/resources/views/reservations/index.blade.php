@@ -88,10 +88,10 @@
                             <td>
                                 {{$reservation->reservation_out_date}}
                             <td>
-                                <div style="{{$today < $reservation->reservation_in_date ? 'color: red' : ''}}">
+                                <div style="{{$today > $reservation->reservation_in_date ? 'color: red' : ''}}">
                                     {{$reservation->reservation_in_date}}
 
-                                    @if($reservation->check_out_date && $today < $reservation->reservation_in_date)
+                                    @if($reservation->check_out_date && $today > $reservation->reservation_in_date)
                                         <br>
                                         <b>PAST DUE</b>
                                     @endif
