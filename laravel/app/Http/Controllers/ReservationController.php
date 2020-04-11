@@ -131,6 +131,10 @@ class ReservationController extends Controller
         if($isAdmin) {
             //if user has been chosen, show choose dates
             if($reservation->userID) {
+                $user = User::find($reservation->userID);
+                if($user->is_DQ){
+                    return view('user.delinquent', array('user'=>$user, 'isAdmin'=>$isAdmin));
+                }
                 return view('reservations.chooseDates', compact('reservationID'));
             }
 
@@ -142,6 +146,10 @@ class ReservationController extends Controller
         else { //reservation is assigned to logged in user
             $reservation->userID = $userID;
             $reservation->save();
+            $user = User::find($reservation->userID);
+                if($user->is_DQ){
+                    return view('user.delinquent', array('user'=>$user, 'isAdmin'=>$isAdmin));
+                }
             return view('reservations.chooseDates', compact('reservationID'));
         }
     }
