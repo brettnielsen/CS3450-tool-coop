@@ -104,14 +104,14 @@ class UserController extends Controller
         return redirect()->route('user.edit', [$user]);
     }
 
-    public function updateDQ(Request $request, $id)
+    public function updateDQ(Request $request, $id, $reservationID)
     {
         $user = User::find($id);
         $user->is_DQ = $request->get('is_DQ') == "";
         $user->save();
 
         if($request->get('is_DQ') == 'on'){
-            return redirect('/reservations/chooseDates/'.$id);
+            return view('reservations.chooseDates', compact('reservationID'));
         }
         else return redirect('/item/index');
     }
