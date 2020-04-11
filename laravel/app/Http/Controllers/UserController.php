@@ -57,7 +57,7 @@ class UserController extends Controller
         $userAdmin = $userID ? \App\Models\User::find($userID) : false;
         $isAdmin = $userAdmin ? !!$userAdmin->is_admin : false;
         
-        return view('user.edit', compact('user', 'isAdmin'));
+        return view('user.edit', array('user'=>$user, 'isAdmin'=>$isAdmin));
     }
 
     /**
@@ -73,7 +73,8 @@ class UserController extends Controller
         $user->state = $request->get('state');
         $user->zip = $request->get('zip');
         $user->phone = $request->get('phone');
-        $user->isAdmin = $request ->get('isAdmin');
+        $user->is_admin = $request->get('isAdmin') == 'on';
+        $user->is_DQ = $request->get('is_DQ') == 'on';
         $user->password = '';
 
         $user->save();
@@ -97,9 +98,22 @@ class UserController extends Controller
         $user->zip = $request->get('zip');
         $user->phone = $request->get('phone');
         $user->is_admin = $request->get('isAdmin') == 'on';
+        $user->is_DQ = $request->get('is_DQ') == 'on';
         $user->save();
 
         return redirect()->route('user.edit', [$user]);
+    }
+
+    public function updateDQ(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->is_DQ = $request->get('is_DQ') == "";
+        $user->save();
+
+        if($request->get('is_DQ') == 'on'){
+            return redirect('/reservations/chooseDates/'.$id);
+        }
+        else return redirect('/item/index');
     }
 
     /**

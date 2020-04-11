@@ -43,6 +43,9 @@
                 <label for="isAdmin">Admin</label>
                 <input type="checkbox" id="isAdmin" name="isAdmin" <?php echo $user->is_admin ? "checked": "" ?>>
                 <br><br>
+                <label for="is_DQ">Is the Account Deliquent?</label>
+                <input type="checkbox" id="is_DQ" name="is_DQ" <?php echo $user->is_DQ ? "checked": "" ?>>
+                <br><br>
             @endif
             <button class="btn btn-primary" type="submit">Save</button>
         </form>
