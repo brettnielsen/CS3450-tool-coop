@@ -33,7 +33,7 @@ class ReservationController extends Controller
                 $reservations = Reservation::where('reservation_out_date', '=', $userChosenDate->format('Y-m-d'))->with('user')->get();
             }
             else {
-                $reservations = Reservation::where('reservation_out_date', '>=', $date->format('Y-m-d'))->with('user')->get();
+                $reservations = Reservation::where('reservation_out_date', '!=', false)->where('check_in_date', false)->where('userID', '!=', false)->with('user')->get();
             }
         }
         else {
