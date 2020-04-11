@@ -9,7 +9,7 @@
 <div style="padding: 15px;">
     <p>This account is delinquent.</p>
     @if($isAdmin)
-    <form action="/user/updateDQ/{{$user->id}}" method="get">
+    <form action="/user/updateDQ/{{$user->id}}/{{$reservationID}}" method="get">
         @csrf
         <label for="is_DQ">Did user pay fees?</label>
         <input type="checkbox" id="is_DQ" name="is_DQ" <?php echo $user->is_DQ ? "": "checked" ?>><br>

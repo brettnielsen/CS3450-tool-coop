@@ -142,7 +142,7 @@ class ReservationController extends Controller
             if($reservation->userID) {
                 $user = User::find($reservation->userID);
                 if($user->is_DQ){
-                    return view('user.delinquent', array('user'=>$user, 'isAdmin'=>$isAdmin));
+                    return view('user.delinquent', array('user'=>$user, 'isAdmin'=>$isAdmin, 'reservationID'=>$reservationID));
                 }
                 return view('reservations.chooseDates', compact('reservationID'));
             }
