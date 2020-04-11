@@ -6,7 +6,47 @@
 
 @extends('layouts.app')
 
-@section('cardTitle', 'Reservations')
+@section('cardTitle')
+    <b style="font-size: 125%">Reservations</b>
+    <div class="d-inline-flex float-right">
+        <form method="get">
+            <span class="float-right">
+                <button>Filter-PickUp</button>
+            </span>
+
+                <span class="float-right">
+                <label for="date">Date: </label>
+                <input  name="date" id="date" type="date">
+            </span>
+        </form>
+        <form method="get">
+            <span class="float-right">
+                <button>Clear Filter</button>
+            </span>
+        </form>
+    </div>
+
+
+    <script>
+        $(document).ready( function() {
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+            document.getElementById('date').value = formatDate(new Date());
+        });
+    </script>
+
+@endsection
 
 @section('content')
     <div>
@@ -48,10 +88,10 @@
                             <td>
                                 {{$reservation->reservation_out_date}}
                             <td>
-                                <div style="{{$today < $reservation->reservation_in_date ? 'color: red' : ''}}">
+                                <div style="{{$today > $reservation->reservation_in_date ? 'color: red' : ''}}">
                                     {{$reservation->reservation_in_date}}
 
-                                    @if($reservation->check_out_date && $today < $reservation->reservation_in_date)
+                                    @if($reservation->check_out_date && $today > $reservation->reservation_in_date)
                                         <br>
                                         <b>PAST DUE</b>
                                     @endif

@@ -4,6 +4,7 @@
     @include('layouts.head')
 </head>
 <body>
+
 <div id="app">
     @include('layouts.navbar')
 
@@ -12,7 +13,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">@yield('cardTitle')</div>
+                        <div class="card-header">@yield('cardTitle')@yield('scripts')</div>
 
                         @yield('content')
 
