@@ -64,7 +64,8 @@
         <div class="content">
             Name:<br>
             <input type=”text” size=”24″ name=”VisitorName”><br><br>
-            Message:<br> <textarea name=”VisitorComment” rows=”4″ cols=”20″> </textarea><br><br>
+            Message:<br>
+            <textarea name=”VisitorComment” rows="10" cols="80"> </textarea><br><br>
             <button type=”button” onclick="alert('message submitted')">Submit</button>
         </div>
         <h2>
@@ -85,7 +86,7 @@
             <li>fill out the required information and click create account</li>
         </ol>
         <h2>If I damage a tool when in use do I have to pay?</h2>
-        <p class="containerClass">     item number two of <a href="/terms">terms and agreements</a></p>
+        <p class="containerClass">     Refer to item number two of <a href="/terms">terms and agreements</a></p>
         <h2>If I don't use computers can I still access tools from your warehouse?</h2>
         <p style="text-indent: 30px">Yes, our company exists to allow ease of access to all members of our community and we
             will do our best to give this service to all who wants it. Just come to our location and upon
