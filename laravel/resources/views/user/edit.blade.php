@@ -9,8 +9,9 @@
 @section('cardTitle', 'Edit User')
 
 @section('content')
+
     <div style="padding: 15px;">
-        <form action="/user/update" method="post">
+        <form action="/user/update/{{$user->id}}" method="get">
             @csrf
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" class="form-control" required value="{{$user->name}}">
@@ -37,8 +38,12 @@
                     <label for="zip">Zip</label>
                     <input type="text" id="zip" name="zip" class="form-control" required value="{{$user->zip}}">
                 </div>
-            </div>
-            <br>
+            </div><br>
+            @if($isAdmin)
+                <label for="isAdmin">Admin</label>
+                <input type="checkbox" id="isAdmin" name="isAdmin" <?php echo $user->is_admin ? "checked": "" ?>>
+                <br><br>
+            @endif
             <button class="btn btn-primary" type="submit">Save</button>
         </form>
     </div>
